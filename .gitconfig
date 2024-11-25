@@ -1,32 +1,69 @@
-# This is a basic gitconfig template that includes some bare minimums for
-# interacting with git in a workspace.  The content between <Angle Brackets>
-# in this file must be replaced with values appropriate to you.  This can 
-# Be done manually or with the following series of commands run from the current
-# folder:
-#
-#  $ HOME=$(pwd) git config --global user.name "Bits the Dog"
-#  $ HOME=$(pwd) git config --global user.email "bits@datadoghq.com"
-#  $ HOME=$(pwd) git config --global user.signingkey "$(git config --global user.signingkey)"
-
-[user]
-        # The name you want to appear as the author of your commits
-        name = <YOUR NAME>
-	# The e-mail address that is associated to the author of your commits
-        email = <YOUR EMAIL>
-# This next section is optional and can be omitted if you do not use ssh git
-# commit signing.  However, doing so is highly encouraged, and if you have not
-# started using this workflow, see the onboarding docs for that:
-#    https://datadoghq.atlassian.net/wiki/spaces/SECENG/pages/2610300092/Project+Iota+Git+Commit+Signing+Onboarding
-#         # This is an ssh key that can be used to sign your commits, it should
-#         # be made available to your workspace via ssh agent forwarding and can be
-#         # seen on your laptop by issuing `git config --global user.signingkey`
-#         signingkey = <YOUR COMMIT SIGNING PUBLIC KEY>
-# [commit]
-# 	gpgsign = true
-# [gpg]
-# 	format = ssh
-
-
-# This is a url rewrite that helps [go and maybe rust] tooling that downloads libraries from our private repos
 [url "git@github.com:DataDog/"]
         insteadOf = https://github.com/DataDog/
+
+[user]
+	email = mike.graf@datadoghq.com
+	name = Mike Graf
+	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHHRVnDMyz2ded/z00xcLPYWmsGLDzzHgUANPPVrd5U
+
+[url "ssh://git@github.com"]
+	insteadOf = https://github.com
+
+[alias]
+	co = checkout
+	ci = commit
+	dt = difftool -- ":(exclude)vendor/"
+	st = status
+	br = branch
+	fup = ! git ci --amend --no-edit && git push -f origin `git rev-parse --abbrev-ref HEAD`
+	praise = blame
+
+	# List all available git aliases
+	# Usage: git aliases
+	aliases = "!git config -l | grep alias | cut -c 7-"
+
+	# Create a "work in progress" commit with your current changes
+	# Usage: git wip
+	wip = !git add . && git commit -am "WIP" --no-verify
+
+	# Undo your last commit
+	# Usage: git undo
+	undo = reset --soft HEAD~1
+
+	# "Safer" force push -- see http://weiqingtoh.github.io/force-with-lease/
+	# Usage: git pushf
+	pushf = push --force-with-lease
+
+	# Create a new branch
+	# Usage: git cb <branch-name>
+	cb = checkout -b
+
+	# Run git status with the short-format flag
+	# Usage: git s
+	s = status --short
+
+	# Deletes local branches references that have already been merged
+	gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[core]
+	hooksPath = /usr/local/dd/global_hooks
+[push]
+	autoSetupRemote = true
+[pull]
+	ff = only
+[gpg "ssh"]
+	program = dd-gitsign
+	allowedSignersFile = /Users/mike.graf/.config/gitsign/allowed-signers
+[gpg]
+	format = ssh
+[dd-gitsign]
+	username = pup-mikegraf
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true

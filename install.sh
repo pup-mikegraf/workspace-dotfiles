@@ -24,3 +24,8 @@ while read df; do
   mkdir -p "$(dirname "$link")"
   ln -sf "$df" "$link"
 done
+
+sudo apt-get update
+sudo apt-get install -y rsync
+curl -L https://binaries.ddbuild.io/service-discovery-platform/fabric_1.117.1_linux_amd64.tar.gz -o fabric.tgz && tar -xvf fabric.tgz && mv ./fabric $HOME/.local/bin
+touch $HOME/.dotfiles_installed
