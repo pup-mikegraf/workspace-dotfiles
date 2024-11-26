@@ -26,6 +26,6 @@ while read df; do
 done
 
 sudo apt-get update
-sudo apt-get install -y rsync
+sudo apt-get install -y rsync silversearcher-ag
 curl -L https://binaries.ddbuild.io/service-discovery-platform/fabric_1.117.1_linux_amd64.tar.gz -o fabric.tgz && tar -xvf fabric.tgz && mv ./fabric $HOME/.local/bin
 touch $HOME/.dotfiles_installed
