@@ -30,3 +30,6 @@ sudo apt-get install -y rsync silversearcher-ag
 curl -L https://binaries.ddbuild.io/service-discovery-platform/fabric_1.117.1_linux_amd64.tar.gz -o fabric.tgz && tar -xvf fabric.tgz && mv ./fabric $HOME/.local/bin
 cp $DOTFILES_PATH/git-pre-commit ~/dd/dd-source/.git/hooks/;
 touch $HOME/.dotfiles_installed
+
+cd $HOME/dd/dd-source && git config --local --add ddsource.hooks.pre-push.gazelle true
+cd $HOME/dd/dd-source && git config --local --add ddsource.hooks.pre-push.gofmt true
