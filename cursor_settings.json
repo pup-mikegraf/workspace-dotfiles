@@ -1,0 +1,101 @@
+{
+    "files.watcherExclude": {
+        "bazel-*": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.hg/store/**": true
+    },
+    "bazel.buildifierExecutable": "/opt/homebrew/bin/buildifier",
+    "bazel.enableCodeLens": true,
+    "bazel.executable": "/opt/homebrew/bin/bzl",
+    "bazel.buildifierFixOnFormat": true,
+    "datadog.telemetry.setup.enableTelemetry": "enabled",
+    "editor.wordWrap": "off",
+    "editor.formatOnSave": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.openRepositoryInParentFolders": "never",
+    "go.alternateTools": {
+        "gopls": "dd-gopls"
+    },
+    "go.toolsEnvVars": {
+        "GOPLS_DISABLE_MODULE_LOADS": "1"
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "go.testFlags": [
+        "-v"
+    ],
+    // "go.inlayHints.compositeLiteralFields": true,
+    // "go.inlayHints.assignVariableTypes": true,
+    // "go.inlayHints.parameterNames": true,
+    "go.editorContextMenuCommands": {
+        "fillStruct": true
+    },
+    "gopls": {
+        "directoryFilters": [
+            "-node_modules",
+            "-vendor",
+            "-.git",
+            "-**/bazel-bin",
+            "-**/bazel-dd-source",
+            "-**/bazel-out",
+            "-**/bazel-testlogs",
+            "-.bin",
+            "-.etc",
+            "-rules"
+        ],
+        // enable placeholders for function parameters when autocompleting
+        "ui.completion.usePlaceholders": true,
+        // remove unnecessary code lenses offered by gopls. These tasks are handled by bazel and gazelle.
+        // https://github.com/golang/tools/blob/master/gopls/doc/codelenses.md for more
+        "ui.codelenses": {
+            "generate": false,
+            "test": false,
+            "tidy": false,
+            "upgrade_dependency": false,
+            "vendor": false
+        },
+        "ui.semanticTokens": true,
+        "formatting.local": "github.com/DataDog"
+    },
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.copyOnSelection": true,
+    "vim.highlightedyank.enable": true,
+    "vim.useSystemClipboard": true,
+    "yaml.maxItemsComputed": 50000,
+    "yaml.format.bracketSpacing": false,
+    "datadog.staticAnalysis.notification.suppressOnboarding": true,
+    "terminal.integrated.env.linux": {
+        "SSH_AUTH_SOCK": "/home/bits/.ssh/ssh_auth_sock"
+    },
+    "workbench.startupEditor": "terminal",
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "bazel.lsp.command": "starpls",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "cSpell.enabled": false,
+    "datadog.telemetry.setup.suppressMigrationNotification": true,
+    // in cursor, don't bother indexing the git graph. It's quite large and slows things down
+    "cursor.general.gitGraphIndexing": "disabled",
+    "makefile.configureOnOpen": true,
+    "cursor.composer.shouldChimeAfterChatFinishes": true,
+    "docker.extension.enableComposeLanguageServer": false,
+    "window.commandCenter": true,
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "remote.SSH.remotePlatform": {
+        "workspace-pup-mikegraf-withcursor": "linux"
+    },
+    "remote.autoForwardPortsSource": "hybrid",
+    "datadog.telemetry.notification.suppressAgentObservabilityMessage": true,
+    "go.diagnostic.vulncheck": "Off"
+}

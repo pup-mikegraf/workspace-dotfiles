@@ -1,7 +1,7 @@
 shell: zsh
 region: us-east-1
 dotfiles: https://github.com/pup-mikegraf/workspace-dotfiles
-editor: claude 
+editor: cursor 
 vscode-extensions:
   - "bazelbuild.vscode-bazel"
   - "datadog.datadog-vscode"
