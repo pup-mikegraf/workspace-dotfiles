@@ -1,6 +1,10 @@
 shell: zsh
 region: us-east-1
 dotfiles: https://github.com/pup-mikegraf/workspace-dotfiles
-editor: vscode
+editor: claude 
 vscode-extensions:
   - "bazelbuild.vscode-bazel"
+  - "datadog.datadog-vscode"
+  - "anysphere.remote-ssh"
+  - "zxh404.vscode-proto3"
+  - "redhat.vscode-yaml"

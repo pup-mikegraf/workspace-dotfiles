@@ -1,0 +1,13 @@
+cat .git/hooks/post-checkout
+#!/bin/bash
+
+# Get the current branch name
+branch_name=$(git symbolic-ref --short HEAD)
+
+if [ "$branch_name" = "main" ]; then
+    echo "Warning: You have checked out branch 'main', but this branch is not used in this repository. Cleaning up for you."
+    git co master;
+    git br -D main;
+fi
+
+exit 0

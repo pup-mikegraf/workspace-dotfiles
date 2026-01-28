@@ -1,3 +1,11 @@
 #!/usr/bin/env zsh
 set -e
-bzl run //:gazelle-update-repos && bzl run //:go -- mod tidy && bzl run //third_party/go:mod_graph_update && bzl run //:gazelle
+go clean -cache;
+bzl run @//tools/format:format_bazel
+bzl run //:gazelle-update-repos
+bzl run //:go -- mod tidy
+bzl run //rules/go/dd_go_package/tests:transitive_third_party_update
+bzl run //third_party/go:mod_graph_update
+bzl run //:gazelle
+bzl run //tools/format:format_gci
+bzl test //domains/eee/apps/intake/providers:all --test_output=all
