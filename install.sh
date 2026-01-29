@@ -35,3 +35,19 @@ chmod +x ~/dd/dd-source/.git/hooks/pre-commit;
 cd $HOME/dd/dd-source && git config --local --add ddsource.hooks.pre-push.gazelle true
 cd $HOME/dd/dd-source && git config --local --add ddsource.hooks.pre-push.gofmt true
 touch $HOME/.dotfiles_installed
+
+# Use TMUX by default
+ZSHRC="$HOME/.zshrc"
+
+TMUX_BLOCK='
+# Auto-start/attach tmux for interactive SSH sessions
+if [ -n "$SSH_CONNECTION" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ]; then
+  exec tmux new-session -A -s work
+fi
+'
+if ! grep -Fq 'exec tmux new-session -A -s work' "$ZSHRC"; then
+  printf "\n%s\n" "$TMUX_BLOCK" >> "$ZSHRC"
+  echo "Added tmux auto-attach block to $ZSHRC"
+else
+  echo "tmux auto-attach block already present in $ZSHRC"
+fi
