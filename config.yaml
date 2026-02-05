@@ -3,7 +3,6 @@ region: us-east-1
 dotfiles: https://github.com/pup-mikegraf/workspace-dotfiles
 editor: cursor 
 vscode-extensions:
-  - "bazelbuild.vscode-bazel"
   - "datadog.datadog-vscode"
   - "anysphere.remote-ssh"
   - "zxh404.vscode-proto3"
